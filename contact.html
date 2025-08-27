@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us | Grace & Grounds Coffeehouse</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.7;
+      color: #333;
+      background-color: #f8f5f2; /* Cream */
+    }
+
+    /* Header & Navigation */
+    header {
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #6d212e; /* Burgundy */
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin-left: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #3e2723; /* Walnut Brown */
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #8a9b6c; /* Sage Green */
+    }
+
+    /* Main Content */
+    main {
+      margin-top: 80px;
+      padding: 4rem 5%;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      color: #3e2723;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #6d212e;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 3rem;
+    }
+
+    .location {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      margin-bottom: 2.5rem;
+      border-top: 5px solid #8a9b6c;
+    }
+
+    .location h2 {
+      color: #6d212e;
+      margin-bottom: 1rem;
+      font-size: 1.6rem;
+    }
+
+    .location p {
+      margin: 0.6rem 0;
+      color: #444;
+    }
+
+    .location a {
+      color: #8a9b6c;
+      text-decoration: none;
+    }
+
+    .location a:hover {
+      text-decoration: underline;
+    }
+
+    /* Map */
+    .map-container {
+      margin: 3rem 0;
+      height: 400px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Contact Form */
+    .form-container {
+      background: #fff;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .form-container h2 {
+      color: #6d212e;
+      margin-bottom: 1.2rem;
+    }
+
+    .form-container label {
+      display: block;
+      margin-top: 1rem;
+      color: #3e2723;
+      font-weight: 600;
+    }
+
+    .form-container input,
+    .form-container select,
+    .form-container textarea {
+      width: 100%;
+      padding: 0.7rem;
+      margin-top: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .form-container textarea {
+      height: 120px;
+    }
+
+    .form-container button {
+      margin-top: 1.5rem;
+      padding: 0.8rem 2rem;
+      background-color: #6d212e;
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .form-container button:hover {
+      background-color: #8a9b6c;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.3rem;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: -100%;
+        background: #fff;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+      }
+      .nav-links.active {
+        left: 0;
+      }
+      .nav-links li {
+        margin: 1rem 0;
+      }
+      .menu-toggle {
+        display: block;
+        cursor: pointer;
+        font-size: 1.5rem;
+      }
+    }
+
+    .menu-toggle {
+      display: none;
+      color: #3e2723;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header & Navigation -->
+  <header>
+    <nav id="navbar">
+      <div class="logo">Grace & Grounds</div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="enquiry.html">Serve & Give</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+      <div class="menu-toggle" id="menuToggle">☰</div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <h1>Contact Us</h1>
+    <p class="subtitle">We'd love to hear from you. Visit one of our locations below.</p>
+
+    <!-- Cape Town Location -->
+    <section class="location">
+      <h2> Cape Town City Centre</h2>
+      <p><strong>Address:</strong> 18 Hope Street, City Bowl, Cape Town, 8001</p>
+      <p><strong>Phone:</strong> <a href="tel:+27215551234">021 555 1234</a></p>
+      <p><strong>Email:</strong> <a href="mailto:ctown@graceandgroundscoffee.com">ctown@graceandgroundscoffee.com</a></p>
+      <p><strong>Hours:</strong> Mon–Fri: 7am–7pm | Sat: 8am–5pm | Sun: 9am–1pm</p>
+      <p><em>Near St. George's Cathedral. Accessible by MyCiTi bus and limited street parking.</em></p>
+    </section>
+
+    <!-- Tygervalley Location -->
+    <section class="location">
+      <h2> Tygervalley</h2>
+      <p><strong>Address:</strong> Unit 12, The Grove Centre, Tyger Valley Drive, Bellville, 7530</p>
+      <p><strong>Phone:</strong> <a href="tel:+27219876543">021 987 6543</a></p>
+      <p><strong>Email:</strong> <a href="mailto:tygervalley@graceandgroundscoffee.com">tygervalley@graceandgroundscoffee.com</a></p>
+      <p><strong>Hours:</strong> Mon–Sat: 8am–6pm | Sun: 9am–3pm</p>
+      <p><em>Located inside The Grove lifestyle centre. Ample parking and wheelchair accessible.</em></p>
+    </section>
+
+    <!-- Map -->
+    <div class="map-container">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38777.41155623949!2d18.4239883!3d-33.9252767!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc62e388879083%3A0x79d395361a5120!2sCape%20Town%20City%20Bowl!5e0!3m2!1sen!2sza!4v1720000000000!5m2!1sen!2sza" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+    <!-- Contact Form -->
+    <section class="form-container">
+      <h2>Send Us a Message</h2>
+      <p>We respond to all enquiries within 24–48 hours. Whether you're interested in volunteering, hosting an event, or just saying hello — we're listening.</p>
+
+      <form action="#" method="post">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone">
+
+        <label for="location">Preferred Location</label>
+        <select id="location" name="location">
+          <option value="">-- Select One --</option>
+          <option value="city">Cape Town City Centre</option>
+          <option value="tygervalley">Tygervalley</option>
+          <option value="either">Either Location</option>
+        </select>
+
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Mobile Menu Toggle Script -->
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+
+</body>
+</html>

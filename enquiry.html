@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Serve & Give | Grace & Grounds Coffeehouse</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <style>
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.7;
+      color: #333;
+      background-color: #f8f5f2; /* Cream */
+    }
+
+    /* Header & Navigation */
+    header {
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #6d212e; /* Burgundy */
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #3e2723; /* Walnut Brown */
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #8a9b6c; /* Sage Green */
+    }
+
+    /* Main Content */
+    main {
+      margin-top: 80px;
+      padding: 4rem 5%;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      color: #3e2723;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #6d212e;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 3rem;
+    }
+
+    .section {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      margin-bottom: 3rem;
+      border-left: 5px solid #8a9b6c;
+    }
+
+    .section h2 {
+      color: #6d212e;
+      margin-bottom: 1.2rem;
+      font-size: 1.8rem;
+    }
+
+    .section p {
+      font-size: 1.05rem;
+      color: #444;
+      margin-bottom: 1rem;
+    }
+
+    .highlight-box {
+      background-color: #f0f7f4;
+      border-left: 5px solid #6d212e;
+      padding: 1.2rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+      color: #333;
+    }
+
+    .opportunities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .role {
+      flex: 1;
+      min-width: 250px;
+      background: #fff;
+      border: 1px solid #e0d8d1;
+      border-radius: 10px;
+      padding: 1.3rem;
+    }
+
+    .role h3 {
+      font-size: 1.3rem;
+      color: #6d212e;
+    }
+
+    /* Enquiry Form */
+    .enquiry-form {
+      background: #fff;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .enquiry-form label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+      color: #3e2723;
+    }
+
+    .enquiry-form input,
+    .enquiry-form select,
+    .enquiry-form textarea {
+      width: 100%;
+      padding: 0.7rem;
+      margin-top: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .enquiry-form button {
+      margin-top: 1.5rem;
+      padding: 0.8rem 2rem;
+      background-color: #6d212e;
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .enquiry-form button:hover {
+      background-color: #8a9b6c;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.3rem;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: -100%;
+        background: #fff;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+      }
+      .nav-links.active {
+        left: 0;
+      }
+      .nav-links li {
+        margin: 1rem 0;
+      }
+      .menu-toggle {
+        display: block;
+        cursor: pointer;
+        font-size: 1.5rem;
+      }
+    }
+
+    .menu-toggle {
+      display: none;
+      color: #3e2723;
+    }
+  </style>
+</head>
+<body>
+
+  <!--  SEMANTIC HEADER & NAVIGATION -->
+  <header>
+    <nav id="navbar">
+      <div class="logo">Grace & Grounds</div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="enquiry.html" class="active">Serve & Give</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="menu-toggle" id="menuToggle">☰</div>
+    </nav>
+  </header>
+
+  <!--  MAIN CONTENT -->
+  <main>
+    <h1>Serve & Give</h1>
+    <p class="subtitle">Join us in growing a community grounded in grace.</p>
+
+    <!--  How You Can Serve -->
+    <section class="section">
+      <h2>How You Can Serve</h2>
+      <p>At Grace & Grounds, every volunteer is a vital part of our mission. Whether you love making coffee, connecting with people, or behind-the-scenes support, there’s a place for you.</p>
+
+      <div class="opportunities">
+        <!-- Barista Support -->
+        <div class="role">
+          <h3>Barista Support</h3>
+          <p>Help prepare coffee, maintain cleanliness, and welcome guests. Training provided — no experience needed, just a warm heart.</p>
+        </div>
+
+        <!-- Guest Host / Waiter -->
+        <div class="role">
+          <h3>Guest Host / Waiter</h3>
+          <p>Greet visitors, take light orders, and create a peaceful atmosphere. Ideal for empathetic, friendly individuals.</p>
+        </div>
+
+        <!-- Events & Outreach Assistant -->
+        <div class="role">
+          <h3>Events & Outreach Assistant</h3>
+          <p>Help set up, run prayer nights, Bible studies, and community events. Great for organisers and encouragers.</p>
+        </div>
+
+        <!-- Creative & Media Support -->
+        <div class="role">
+          <h3>Creative & Media Support</h3>
+          <p>Photography, social media, or design skills? We’d love your help sharing our story online.</p>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        “Each of you should use whatever gift you have received to serve others, as faithful stewards of God’s grace.” — 1 Peter 4:10
+      </div>
+    </section>
+
+    <!-- How You Can Give -->
+    <section class="section">
+      <h2>How You Can Give</h2>
+      <p>Your generosity helps us keep our doors open, run programs, and care for those in need. Here’s how your donations are used:</p>
+
+      <ul>
+        <li><strong>60%</strong> – Café operations (fair wages, quality coffee, utilities)</li>
+        <li><strong>20%</strong> – Community outreach (meals for the homeless, care packages)</li>
+        <li><strong>10%</strong> – Event hosting (Bible studies, prayer nights, youth programs)</li>
+        <li><strong>10%</strong> – Pay-It-Forward program (free coffee & meals for those in need)</li>
+      </ul>
+
+      <p>We are committed to transparency and stewardship. All funds stay within the Cape Town community.</p>
+    </section>
+
+    <!--  Enquiry Form -->
+    <section class="enquiry-form">
+      <h2>Get in Touch</h2>
+      <p>Interested in serving or have a question about giving? Fill out the form below and we’ll get back to you.</p>
+
+      <form action="#" method="POST">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="phone">Phone Number (Optional)</label>
+        <input type="tel" id="phone" name="phone" />
+
+        <label for="interest">I'm Interested In</label>
+        <select id="interest" name="interest" required>
+          <option value="">-- Select an Option --</option>
+          <option value="barista">Volunteering as a Barista</option>
+          <option value="host">Serving as a Guest Host</option>
+          <option value="events">Helping with Events</option>
+          <option value="creative">Creative/Media Support</option>
+          <option value="donate">Making a Donation</option>
+          <option value="other">Other Inquiry</option>
+        </select>
+
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" rows="5" placeholder="Tell us more..." required></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Mobile Menu Toggle Script -->
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+
+</body>
+</html>
