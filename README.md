@@ -66,3 +66,8 @@ To build a thriving, faith-centered community where every cup is brewed with lov
 - wocintechchat.com. (2023). *Woman smiling at camera*. Unsplash. https://images.unsplash.com/photo-1594736798588-49fa1f3da49a?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=150&w=150&q=80  
 - Borba, J. (2023). *Man in suit looking at camera*. Unsplash. https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80  
 - Google. (n.d.). *Google Maps – Cape Town, South Africa*. https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38777!2d18.4239883!3d-33.9252767!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc62e388879083%3A0x79d395361a5120!2sCape%20Town!5e0!3m2!1sen!2sza!4v1720000000000!5m2!1sen!2sza
+- ### AI Assistance
+- Alibaba Cloud. (2024). Qwen (Version 2.5) [Large language model]. Available at: https://qwen.ai  
+  [Accessed: 5 April 2025].
+  OpenAI. (2025). ChatGPT (June 2025 version) [Large language model]. Available at: https://chatgpt.com  
+[Accessed: April 2025].
