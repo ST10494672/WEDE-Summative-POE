@@ -8,167 +8,35 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 
-  <!-- Styles -->
-  <style>
-    /* Reset & Base */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Open Sans', sans-serif;
-      line-height: 1.7;
-      color: #333;
-      background-color: #f8f5f2; /* Cream */
-    }
-
-    /* Header & Navigation */
-    header {
-      background-color: #fff;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 5%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      color: #6d212e; /* Burgundy */
-    }
-
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 2rem;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: #3e2723; /* Walnut Brown */
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: #8a9b6c; /* Sage Green */
-    }
-
-    /* Main Content */
-    main {
-      margin-top: 80px;
-      padding: 4rem 5%;
-      max-width: 1200px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    h1, h2 {
-      font-family: 'Playfair Display', serif;
-      color: #3e2723;
-    }
-
-    h1 {
-      font-size: 2.8rem;
-      text-align: center;
-      margin-bottom: 1rem;
-      color: #6d212e;
-    }
-
-    h2 {
-      color: #6d212e;
-      border-left: 4px solid #6d212e;
-      padding-left: 10px;
-      margin: 2rem 0 1rem;
-    }
-
-    ul {
-      list-style: none;
-      margin: 1rem 0;
-    }
-
-    li {
-      padding: 0.6rem 0;
-      border-bottom: 1px dashed #eee;
-    }
-
-    .menu-item {
-      font-weight: 600;
-    }
-
-    .menu-price {
-      float: right;
-      color: #6d212e;
-    }
-
-    .highlight {
-      font-size: 0.95rem;
-      color: #555;
-      display: block;
-      margin-top: 0.3rem;
-      font-style: italic;
-    }
-
-    .quote {
-      font-family: 'Dancing Script', cursive;
-      font-size: 1.6rem;
-      color: #6d212e;
-      text-align: center;
-      margin: 3rem 0;
-      font-style: italic;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2.3rem;
-      }
-      main {
-        padding: 2rem;
-      }
-    }
-  </style>
+  <!-- External CSS -->
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
   <!--  SEMANTIC HEADER & NAVIGATION -->
   <header>
-    <nav>
+    <nav id="navbar">
       <div class="logo">Grace & Grounds</div>
-      <ul class="nav-links">
+      <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About Us</a></li>
         <li><a href="menu.html" class="active">Menu</a></li>
         <li><a href="enquiry.html">Serve & Give</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
+      <div class="menu-toggle" id="menuToggle">☰</div>
     </nav>
   </header>
 
   <!-- MAIN CONTENT -->
   <main>
     <h1>Our Menu</h1>
-    <p style="text-align: center; color: #555; margin-bottom: 3rem;">
-      Crafted with care, served with grace.
-    </p>
+    <p class="subtitle">Crafted with care, served with grace.</p>
 
     <!--  Hot Drinks -->
     <section>
-      <h2> Hot Drinks</h2>
-      <ul> </ul>
+      <h2>Hot Drinks</h2>
+      <ul>
         <li>
           <span class="menu-item">Classic Brewed Coffee</span>
           <span class="menu-price">R25</span>
@@ -195,7 +63,7 @@
 
     <!-- Cold Drinks -->
     <section>
-      <h2> Cold Drinks</h2>
+      <h2>Cold Drinks</h2>
       <ul>
         <li>
           <span class="menu-item">Iced Coffee</span>
@@ -222,7 +90,7 @@
 
     <!--  Vegetarian Option -->
     <section>
-      <h2> Vegetarian Option</h2>
+      <h2>Vegetarian Option</h2>
       <ul>
         <li>
           <span class="menu-item">Avocado & Tomato Toast</span>
@@ -237,6 +105,16 @@
       “Each cup poured is a chance to show love.” — Grace & Grounds
     </p>
   </main>
+
+  <!-- Mobile Menu Toggle Script -->
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
 
 </body>
 </html>
