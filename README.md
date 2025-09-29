@@ -5,7 +5,7 @@
 - **Student Number:** ST10494672  
 - **Course:** Web Development  
 - **Institution:** Varsity College  
-- **Submission Date:** April 2025  
+- **Submission Date:** September 2025  
 
 ##  Project Title  
 **Grace & Grounds Coffeehouse: A Faith-Based Community Café Website — Part 2: External Styling & Responsive Design**  
