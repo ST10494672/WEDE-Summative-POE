@@ -92,12 +92,12 @@ grace-and-grounds-website/
 ## References (Updated)
 
 **Image Sources**  
-- Unsplash. (2023). Coffee shop interior. [Link](https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80)  
-- Borba, J. (2023). Man in suit looking at camera. Unsplash. [Link](https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80)  
-- wocintechchat.com. (2023). Woman smiling at camera. Unsplash. [Link](https://images.unsplash.com/photo-1594736798588-49fa1f3da49a?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=150&w=150&q=80)  
+- Unsplash. (2023). Coffee shop interior. (https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80)  
+- Borba, J. (2023). Man in suit looking at camera. Unsplash. (https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80)  
+- wocintechchat.com. (2023). Woman smiling at camera. Unsplash. (https://images.unsplash.com/photo-1594736798588-49fa1f3da49a?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=150&w=150&q=80)  
 
 **Map Embed**  
-- Google. (n.d.). Google Maps – Cape Town, South Africa. [Link](https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38777.41155623949!2d18.4239883!3d-33.9252767!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc62e388879083%3A0x79d395361a5120!2sCape%20Town%20City%20Bowl!5e0!3m2!1sen!2sza!4v1720000000000!5m2!1sen!2sza)  
+- Google. (n.d.). Google Maps – Cape Town, South Africa.(https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38777.41155623949!2d18.4239883!3d-33.9252767!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc62e388879083%3A0x79d395361a5120!2sCape%20Town%20City%20Bowl!5e0!3m2!1sen!2sza!4v1720000000000!5m2!1sen!2sza)  
 
 **AI Assistance**  
 - Alibaba Cloud. (2024). Qwen (Version 2.5) [Large language model]. Available at: [https://qwen.ai](https://qwen.ai)  
