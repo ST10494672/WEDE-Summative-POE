@@ -68,7 +68,7 @@
       <h2>Send Us a Message</h2>
       <p>We respond to all enquiries within 24–48 hours. Whether you're interested in volunteering, hosting an event, or just saying hello — we're listening.</p>
 
-      <form action="#" method="post">
+      <form id="contactForm">
         <label for="name">Full Name</label>
         <input type="text" id="name" name="name" required autocomplete="name">
 
@@ -89,7 +89,23 @@
         <label for="message">Your Message</label>
         <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
 
-        <button type="submit">Send Message</button>
+        <!-- Email client selector – Neatened -->
+        <fieldset style="border: none; padding: 0; margin-top: 16px;">
+          <legend style="font-weight: 600; margin-bottom: 8px; font-size: 1rem;">Send using</legend>
+          <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <input type="radio" name="sendMethod" value="mailto" checked>
+              <span>Default email app</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <input type="radio" name="sendMethod" value="gmail">
+              <span>Gmail (in browser)</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <button type="submit">Open Email</button>
+        <div id="status" style="margin-top: 12px; color: #2e7d32; font-size: 0.95rem;"></div>
       </form>
     </section>
   </main>
@@ -102,6 +118,68 @@
     menuToggle.addEventListener('click', () => {
       navLinks.classList.toggle('active');
     });
+  </script>
+
+  <!-- Contact Form Email Handler -->
+  <script>
+  (function () {
+    const RECIPIENT = 'knipejordan@gmail.com';
+
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('status');
+
+    function enc(s) { return encodeURIComponent(s || ''); }
+
+    function composeMailto(to, subject, body) {
+      return 'mailto:' + enc(to) + '?subject=' + enc(subject) + '&body=' + enc(body);
+    }
+
+    function composeGmail(to, subject, body) {
+      return 'https://mail.google.com/mail/?view=cm&fs=1&to=' + enc(to) + '&su=' + enc(subject) + '&body=' + enc(body);
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = form.name.value || '';
+      const email = form.email.value || '';
+      const phone = form.phone.value || '';
+      const locationOption = form.location.value;
+      let locationLabel = 'Not specified';
+      if (locationOption === 'city') locationLabel = 'Cape Town City Centre';
+      else if (locationOption === 'tygervalley') locationLabel = 'Tygervalley';
+      else if (locationOption === 'either') locationLabel = 'Either Location';
+
+      const message = form.message.value || '';
+      const sendMethod = (form.querySelector('input[name="sendMethod"]:checked') || {}).value || 'mailto';
+
+      const subject = `Grace & Grounds Contact: ${name}`;
+      const body = [
+        'Hello,',
+        '',
+        message,
+        '',
+        '---',
+        `Name: ${name}`,
+        `Email: ${email}`,
+        `Phone: ${phone}`,
+        `Preferred Location: ${locationLabel}`,
+        '',
+        'Sent from Grace & Grounds website contact form'
+      ].join('\n');
+
+      let url = '';
+      if (sendMethod === 'gmail') {
+        url = composeGmail(RECIPIENT, subject, body);
+        window.open(url, '_blank', 'noopener,noreferrer');
+      } else {
+        url = composeMailto(RECIPIENT, subject, body);
+        window.location.href = url;
+      }
+
+      status.textContent = 'Email draft opened. Please review and send from your chosen email service.';
+    });
+  })();
   </script>
 
 </body>
