@@ -81,23 +81,24 @@
     </section>
 
     <!-- Enquiry Form -->
-    <section class="enquiry-form" aria-labelledby="form-heading">
+    <section class="form-container" aria-labelledby="form-heading">
       <h2 id="form-heading">Get in Touch</h2>
       <p>Interested in serving or have a question about giving? Fill out the form below and we’ll get back to you.</p>
 
-      <!-- Replace action="#" with your real endpoint in production -->
-      <form action="#" method="POST" name="serve-give-form">
+      <form id="enquiryForm" novalidate>
         <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" required autocomplete="name" />
+        <input type="text" id="name" name="name" required autocomplete="name" aria-describedby="nameError">
+        <div id="nameError" style="color: #d32f2f; font-size: 0.85rem; margin-top: 4px; display: none;"></div>
 
         <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" required autocomplete="email" />
+        <input type="email" id="email" name="email" required autocomplete="email" aria-describedby="emailError">
+        <div id="emailError" style="color: #d32f2f; font-size: 0.85rem; margin-top: 4px; display: none;"></div>
 
         <label for="phone">Phone Number (Optional)</label>
-        <input type="tel" id="phone" name="phone" autocomplete="tel" />
+        <input type="tel" id="phone" name="phone" autocomplete="tel">
 
         <label for="interest">I'm Interested In</label>
-        <select id="interest" name="interest" required>
+        <select id="interest" name="interest" required aria-describedby="interestError">
           <option value="">-- Select an Option --</option>
           <option value="barista">Volunteering as a Barista</option>
           <option value="host">Serving as a Guest Host</option>
@@ -106,11 +107,29 @@
           <option value="donate">Making a Donation</option>
           <option value="other">Other Inquiry</option>
         </select>
+        <div id="interestError" style="color: #d32f2f; font-size: 0.85rem; margin-top: 4px; display: none;"></div>
 
         <label for="message">Your Message</label>
-        <textarea id="message" name="message" rows="5" placeholder="Tell us more..." required></textarea>
+        <textarea id="message" name="message" rows="5" placeholder="Tell us more..." required aria-describedby="messageError"></textarea>
+        <div id="messageError" style="color: #d32f2f; font-size: 0.85rem; margin-top: 4px; display: none;"></div>
 
-        <button type="submit">Send Message</button>
+        <!-- Email client selector – Matching contact.html -->
+        <fieldset style="border: none; padding: 0; margin-top: 16px;">
+          <legend style="font-weight: 600; margin-bottom: 8px; font-size: 1rem;">Send using</legend>
+          <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <input type="radio" name="sendMethod" value="mailto" checked>
+              <span>Default email app</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <input type="radio" name="sendMethod" value="gmail">
+              <span>Gmail (in browser)</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <button type="submit">Open Email</button>
+        <div id="status" style="margin-top: 12px; color: #2e7d32; font-size: 0.95rem;"></div>
       </form>
     </section>
   </main>
@@ -127,6 +146,125 @@
         });
       }
     });
+  </script>
+
+  <!-- Enquiry Form Email Handler (aligned with contact.html) -->
+  <script>
+  (function () {
+    const RECIPIENT = 'knipejordan@gmail.com'; // Your email
+
+    const form = document.getElementById('enquiryForm');
+    const status = document.getElementById('status');
+
+    // Error elements
+    const nameError = document.getElementById('nameError');
+    const emailError = document.getElementById('emailError');
+    const interestError = document.getElementById('interestError');
+    const messageError = document.getElementById('messageError');
+
+    function enc(s) { return encodeURIComponent(s || ''); }
+
+    function composeMailto(to, subject, body) {
+      return 'mailto:' + enc(to) + '?subject=' + enc(subject) + '&body=' + enc(body);
+    }
+
+    function composeGmail(to, subject, body) {
+      return 'https://mail.google.com/mail/?view=cm&fs=1&to=' + enc(to) + '&su=' + enc(subject) + '&body=' + enc(body);
+    }
+
+    function showError(element, message) {
+      element.textContent = message;
+      element.style.display = 'block';
+    }
+
+    function hideError(element) {
+      element.style.display = 'none';
+    }
+
+    function validateField(field, errorElement, message) {
+      if (!field.value.trim()) {
+        showError(errorElement, message);
+        return false;
+      }
+      hideError(errorElement);
+      return true;
+    }
+
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!re.test(email)) {
+        showError(emailError, 'Please enter a valid email address.');
+        return false;
+      }
+      hideError(emailError);
+      return true;
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      let isValid = true;
+
+      if (!validateField(form.name, nameError, 'Please enter your full name.')) isValid = false;
+      if (!validateField(form.email, emailError, 'Please enter your email address.')) isValid = false;
+      else if (!validateEmail(form.email.value)) isValid = false;
+      if (!validateField(form.interest, interestError, 'Please select an option.')) isValid = false;
+      if (!validateField(form.message, messageError, 'Please write your message.')) isValid = false;
+
+      if (!isValid) {
+        status.textContent = '';
+        return;
+      }
+
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const phone = form.phone.value.trim() || 'Not provided';
+      const interest = form.interest.options[form.interest.selectedIndex].text;
+      const message = form.message.value.trim();
+      const sendMethod = (form.querySelector('input[name="sendMethod"]:checked') || {}).value || 'mailto';
+
+      const subject = `Grace & Grounds: Serve & Give Enquiry from ${name}`;
+      const body = [
+        'Hello,',
+        '',
+        message,
+        '',
+        '---',
+        `Name: ${name}`,
+        `Email: ${email}`,
+        `Phone: ${phone}`,
+        `Interested In: ${interest}`,
+        '',
+        'Sent from Grace & Grounds "Serve & Give" form'
+      ].join('\n');
+
+      let url;
+      if (sendMethod === 'gmail') {
+        url = composeGmail(RECIPIENT, subject, body);
+        window.open(url, '_blank', 'noopener,noreferrer');
+      } else {
+        url = composeMailto(RECIPIENT, subject, body);
+        window.location.href = url;
+      }
+
+      status.textContent = 'Email draft opened. Please review and send from your chosen email service.';
+
+      // Clear errors
+      hideError(nameError);
+      hideError(emailError);
+      hideError(interestError);
+      hideError(messageError);
+    });
+
+    // Real-time validation
+    form.name.addEventListener('blur', () => validateField(form.name, nameError, 'Please enter your full name.'));
+    form.email.addEventListener('blur', () => {
+      validateField(form.email, emailError, 'Please enter your email address.');
+      if (form.email.value.trim()) validateEmail(form.email.value);
+    });
+    form.interest.addEventListener('change', () => validateField(form.interest, interestError, 'Please select an option.'));
+    form.message.addEventListener('blur', () => validateField(form.message, messageError, 'Please write your message.'));
+  })();
   </script>
 
 </body>
