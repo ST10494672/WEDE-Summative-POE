@@ -100,8 +100,8 @@ grace-and-grounds-website/
 - Google. (n.d.). Google Maps – Cape Town, South Africa.(https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38777.41155623949!2d18.4239883!3d-33.9252767!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc62e388879083%3A0x79d395361a5120!2sCape%20Town%20City%20Bowl!5e0!3m2!1sen!2sza!4v1720000000000!5m2!1sen!2sza)  
 
 **AI Assistance**  
-- Alibaba Cloud. (2024). Qwen (Version 2.5) [Large language model]. Available at: [https://qwen.ai](https://qwen.ai)  
-- OpenAI. (2025). ChatGPT (June 2025 version) [Large language model]. Available at: [https://chatgpt.com](https://chatgpt.com)  
+- Alibaba Cloud. (2024). Qwen (Version 2.5) [Large language model].
+- OpenAI. (2025). ChatGPT (June 2025 version) [Large language model]. 
 
 ## How to Test Locally  
 1. Ensure the folder structure matches the project layout above  
