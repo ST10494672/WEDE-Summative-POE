@@ -59,7 +59,8 @@
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38777.41155623949!2d18.4239883!3d-33.9252767!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc62e388879083%3A0x79d395361a5120!2sCape%20Town%20City%20Bowl!5e0!3m2!1sen!2sza!4v1720000000000!5m2!1sen!2sza" 
         allowfullscreen="" 
         loading="lazy" 
-        referrerpolicy="no-referrer-when-downgrade">
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Google Map of Grace & Grounds Coffeehouse Locations">
       </iframe>
     </div>
 
@@ -68,26 +69,31 @@
       <h2>Send Us a Message</h2>
       <p>We respond to all enquiries within 24–48 hours. Whether you're interested in volunteering, hosting an event, or just saying hello — we're listening.</p>
 
-      <form id="contactForm">
+      <form id="contactForm" novalidate>
         <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" required autocomplete="name">
+        <input type="text" id="name" name="name" required autocomplete="name" aria-describedby="nameError">
+        <div id="nameError" style="color: #d32f2f; font-size: 0.85rem; margin-top: 4px; display: none;"></div>
 
         <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" required autocomplete="email">
+        <input type="email" id="email" name="email" required autocomplete="email" aria-describedby="emailError">
+        <div id="emailError" style="color: #d32f2f; font-size: 0.85rem; margin-top: 4px; display: none;"></div>
 
         <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" name="phone" autocomplete="tel">
+        <input type="tel" id="phone" name="phone" autocomplete="tel" aria-describedby="phoneError">
+        <div id="phoneError" style="color: #d32f2f; font-size: 0.85rem; margin-top: 4px; display: none;"></div>
 
         <label for="location">Preferred Location</label>
-        <select id="location" name="location">
+        <select id="location" name="location" required aria-describedby="locationError">
           <option value="">-- Select One --</option>
           <option value="city">Cape Town City Centre</option>
           <option value="tygervalley">Tygervalley</option>
           <option value="either">Either Location</option>
         </select>
+        <div id="locationError" style="color: #d32f2f; font-size: 0.85rem; margin-top: 4px; display: none;"></div>
 
         <label for="message">Your Message</label>
-        <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
+        <textarea id="message" name="message" placeholder="How can we help you?" required aria-describedby="messageError"></textarea>
+        <div id="messageError" style="color: #d32f2f; font-size: 0.85rem; margin-top: 4px; display: none;"></div>
 
         <!-- Email client selector – Neatened -->
         <fieldset style="border: none; padding: 0; margin-top: 16px;">
@@ -120,13 +126,20 @@
     });
   </script>
 
-  <!-- Contact Form Email Handler -->
+  <!-- Contact Form Email Handler with Validation -->
   <script>
   (function () {
     const RECIPIENT = 'knipejordan@gmail.com';
 
     const form = document.getElementById('contactForm');
     const status = document.getElementById('status');
+
+    // Error message elements
+    const nameError = document.getElementById('nameError');
+    const emailError = document.getElementById('emailError');
+    const phoneError = document.getElementById('phoneError');
+    const locationError = document.getElementById('locationError');
+    const messageError = document.getElementById('messageError');
 
     function enc(s) { return encodeURIComponent(s || ''); }
 
@@ -138,19 +151,69 @@
       return 'https://mail.google.com/mail/?view=cm&fs=1&to=' + enc(to) + '&su=' + enc(subject) + '&body=' + enc(body);
     }
 
+    function showError(element, message) {
+      element.textContent = message;
+      element.style.display = 'block';
+    }
+
+    function hideError(element) {
+      element.style.display = 'none';
+    }
+
+    function validateField(field, errorElement, message) {
+      if (!field.value.trim()) {
+        showError(errorElement, message);
+        return false;
+      }
+      hideError(errorElement);
+      return true;
+    }
+
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!re.test(email)) {
+        showError(emailError, 'Please enter a valid email address.');
+        return false;
+      }
+      hideError(emailError);
+      return true;
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      const name = form.name.value || '';
-      const email = form.email.value || '';
-      const phone = form.phone.value || '';
+      let isValid = true;
+
+      // Validate name
+      if (!validateField(form.name, nameError, 'Please enter your full name.')) isValid = false;
+
+      // Validate email
+      if (!validateField(form.email, emailError, 'Please enter your email address.')) isValid = false;
+      else if (!validateEmail(form.email.value)) isValid = false;
+
+      // Validate location
+      if (!validateField(form.location, locationError, 'Please select a preferred location.')) isValid = false;
+
+      // Validate message
+      if (!validateField(form.message, messageError, 'Please write your message.')) isValid = false;
+
+      // Phone is optional — no validation needed
+
+      if (!isValid) {
+        status.textContent = '';
+        return;
+      }
+
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const phone = form.phone.value.trim() || 'Not provided';
       const locationOption = form.location.value;
       let locationLabel = 'Not specified';
       if (locationOption === 'city') locationLabel = 'Cape Town City Centre';
       else if (locationOption === 'tygervalley') locationLabel = 'Tygervalley';
       else if (locationOption === 'either') locationLabel = 'Either Location';
 
-      const message = form.message.value || '';
+      const message = form.message.value.trim();
       const sendMethod = (form.querySelector('input[name="sendMethod"]:checked') || {}).value || 'mailto';
 
       const subject = `Grace & Grounds Contact: ${name}`;
@@ -178,7 +241,25 @@
       }
 
       status.textContent = 'Email draft opened. Please review and send from your chosen email service.';
+      
+      // Optional: Reset form after successful submission
+      // form.reset();
+      // Clear errors too
+      hideError(nameError);
+      hideError(emailError);
+      hideError(phoneError);
+      hideError(locationError);
+      hideError(messageError);
     });
+
+    // Real-time validation as user types
+    form.name.addEventListener('blur', () => validateField(form.name, nameError, 'Please enter your full name.'));
+    form.email.addEventListener('blur', () => {
+      validateField(form.email, emailError, 'Please enter your email address.');
+      if (form.email.value.trim()) validateEmail(form.email.value);
+    });
+    form.location.addEventListener('change', () => validateField(form.location, locationError, 'Please select a preferred location.'));
+    form.message.addEventListener('blur', () => validateField(form.message, messageError, 'Please write your message.'));
   })();
   </script>
 

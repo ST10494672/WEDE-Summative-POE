@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Serve & Give | Grace & Grounds Coffeehouse</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+  <!-- Google Fonts with font-display swap -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&family=Dancing+Script:wght@600&display=swap&font-display=swap" rel="stylesheet">
 
   <!-- External CSS -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-  <!--  SEMANTIC HEADER & NAVIGATION -->
+  <!-- Header & Navigation -->
   <header>
-    <nav id="navbar">
+    <nav id="navbar" aria-label="Main navigation">
       <div class="logo">Grace & Grounds</div>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Home</a></li>
@@ -24,40 +24,36 @@
         <li><a href="enquiry.html" class="active">Serve & Give</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-      <div class="menu-toggle" id="menuToggle">☰</div>
+      <div class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">☰</div>
     </nav>
   </header>
 
-  <!--  MAIN CONTENT -->
+  <!-- Main Content -->
   <main>
     <h1>Serve & Give</h1>
     <p class="subtitle">Join us in growing a community grounded in grace.</p>
 
-    <!--  How You Can Serve -->
+    <!-- How You Can Serve -->
     <section class="section">
       <h2>How You Can Serve</h2>
       <p>At Grace & Grounds, every volunteer is a vital part of our mission. Whether you love making coffee, connecting with people, or behind-the-scenes support, there’s a place for you.</p>
 
       <div class="opportunities">
-        <!-- Barista Support -->
         <div class="role">
           <h3>Barista Support</h3>
           <p>Help prepare coffee, maintain cleanliness, and welcome guests. Training provided — no experience needed, just a warm heart.</p>
         </div>
 
-        <!-- Guest Host / Waiter -->
         <div class="role">
           <h3>Guest Host / Waiter</h3>
           <p>Greet visitors, take light orders, and create a peaceful atmosphere. Ideal for empathetic, friendly individuals.</p>
         </div>
 
-        <!-- Events & Outreach Assistant -->
         <div class="role">
           <h3>Events & Outreach Assistant</h3>
           <p>Help set up, run prayer nights, Bible studies, and community events. Great for organisers and encouragers.</p>
         </div>
 
-        <!-- Creative & Media Support -->
         <div class="role">
           <h3>Creative & Media Support</h3>
           <p>Photography, social media, or design skills? We’d love your help sharing our story online.</p>
@@ -84,12 +80,13 @@
       <p>We are committed to transparency and stewardship. All funds stay within the Cape Town community.</p>
     </section>
 
-    <!--  Enquiry Form -->
-    <section class="enquiry-form">
-      <h2>Get in Touch</h2>
+    <!-- Enquiry Form -->
+    <section class="enquiry-form" aria-labelledby="form-heading">
+      <h2 id="form-heading">Get in Touch</h2>
       <p>Interested in serving or have a question about giving? Fill out the form below and we’ll get back to you.</p>
 
-      <form action="#" method="POST">
+      <!-- Replace action="#" with your real endpoint in production -->
+      <form action="#" method="POST" name="serve-give-form">
         <label for="name">Full Name</label>
         <input type="text" id="name" name="name" required autocomplete="name" />
 
@@ -120,11 +117,15 @@
 
   <!-- Mobile Menu Toggle Script -->
   <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
 
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+        });
+      }
     });
   </script>
 

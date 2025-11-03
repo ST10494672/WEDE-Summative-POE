@@ -2,20 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore our thoughtfully crafted menu at Grace & Grounds Coffeehouse in Cape Town — featuring specialty coffee, cold drinks, and vegetarian options, all served with grace.">
   <title>Our Menu | Grace & Grounds Coffeehouse</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+  <!-- Google Fonts with font-display swap -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&family=Dancing+Script:wght@600&display=swap&font-display=swap" rel="stylesheet">
 
   <!-- External CSS -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-  <!--  SEMANTIC HEADER & NAVIGATION -->
+  <!-- Header & Navigation -->
   <header>
-    <nav id="navbar">
+    <nav id="navbar" aria-label="Main navigation">
       <div class="logo">Grace & Grounds</div>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Home</a></li>
@@ -24,18 +25,18 @@
         <li><a href="enquiry.html">Serve & Give</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-      <div class="menu-toggle" id="menuToggle">☰</div>
+      <div class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">☰</div>
     </nav>
   </header>
 
-  <!-- MAIN CONTENT -->
+  <!-- Main Content -->
   <main>
     <h1>Our Menu</h1>
     <p class="subtitle">Crafted with care, served with grace.</p>
 
-    <!--  Hot Drinks -->
-    <section>
-      <h2>Hot Drinks</h2>
+    <!-- Hot Drinks -->
+    <section aria-labelledby="hot-drinks-heading">
+      <h2 id="hot-drinks-heading">Hot Drinks</h2>
       <ul>
         <li>
           <span class="menu-item">Classic Brewed Coffee</span>
@@ -62,8 +63,8 @@
     </section>
 
     <!-- Cold Drinks -->
-    <section>
-      <h2>Cold Drinks</h2>
+    <section aria-labelledby="cold-drinks-heading">
+      <h2 id="cold-drinks-heading">Cold Drinks</h2>
       <ul>
         <li>
           <span class="menu-item">Iced Coffee</span>
@@ -88,9 +89,9 @@
       </ul>
     </section>
 
-    <!--  Vegetarian Option -->
-    <section>
-      <h2>Vegetarian Option</h2>
+    <!-- Vegetarian Option -->
+    <section aria-labelledby="vegetarian-heading">
+      <h2 id="vegetarian-heading">Vegetarian Option</h2>
       <ul>
         <li>
           <span class="menu-item">Avocado & Tomato Toast</span>
@@ -108,11 +109,15 @@
 
   <!-- Mobile Menu Toggle Script -->
   <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
 
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+        });
+      }
     });
   </script>
 

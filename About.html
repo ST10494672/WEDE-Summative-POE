@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Us | Grace & Grounds Coffeehouse</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+  <!-- Google Fonts with font-display swap for performance -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&family=Dancing+Script:wght@600&display=swap&font-display=swap" rel="stylesheet">
 
   <!-- External CSS -->
   <link rel="stylesheet" href="css/styles.css">
@@ -15,7 +15,7 @@
 
   <!-- Header & Navigation -->
   <header>
-    <nav id="navbar">
+    <nav id="navbar" aria-label="Main navigation">
       <div class="logo">Grace & Grounds</div>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Home</a></li>
@@ -24,7 +24,7 @@
         <li><a href="enquiry.html">Serve & Give</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-      <div class="menu-toggle" id="menuToggle">☰</div>
+      <div class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">☰</div>
     </nav>
   </header>
 
@@ -75,7 +75,7 @@
       <div class="team">
         <!-- Mark -->
         <div class="team-member">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Mark Johnson">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Mark Johnson" loading="lazy">
           <h3>Mark Johnson</h3>
           <div class="role">Co-Founder & Head Barista</div>
           <p>
@@ -84,7 +84,7 @@
         </div>
         <!-- Sarah -->
         <div class="team-member">
-          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Sarah Johnson">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Sarah Johnson" loading="lazy">
           <h3>Sarah Johnson</h3>
           <div class="role">Co-Founder & Community Director</div>
           <p>
@@ -97,11 +97,15 @@
 
   <!-- Mobile Menu Toggle Script -->
   <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
 
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+        });
+      }
     });
   </script>
 

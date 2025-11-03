@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Grace & Grounds Coffeehouse | Brewed with Love, Served in Grace</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+  <!-- Google Fonts with font-display swap for performance -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&family=Dancing+Script:wght@600&display=swap&font-display=swap" rel="stylesheet">
 
   <!-- External CSS -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-  <!--  HEADER & NAVIGATION -->
+  <!-- Header & Navigation -->
   <header>
-    <nav id="navbar">
+    <nav id="navbar" aria-label="Main navigation">
       <div class="logo">Grace & Grounds</div>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html" class="active">Home</a></li>
@@ -24,26 +24,30 @@
         <li><a href="enquiry.html">Serve & Give</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-      <div class="menu-toggle" id="menuToggle">☰</div>
+      <div class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">☰</div>
     </nav>
   </header>
 
-  <!--  MAIN HERO SECTION -->
+  <!-- Main Content -->
   <main>
     <section class="hero">
       <h1>Brewed with Love, Served in Grace</h1>
-      <p>A faith-filled space in Cape Town where coffee meets community and hearts find rest.</p>
+      <p class="hero-tagline">A faith-filled space in Cape Town where coffee meets community and hearts find rest.</p>
       <a href="enquiry.html" class="cta-button">Get Involved</a>
     </section>
   </main>
 
-  <!-- MOBILE MENU TOGGLE SCRIPT -->
+  <!-- Mobile Menu Toggle Script -->
   <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
 
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+        });
+      }
     });
   </script>
 
